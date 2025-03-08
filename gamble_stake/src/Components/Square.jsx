@@ -8,7 +8,7 @@ import success from '../Sounds/success.mp3';
 const Square = () => {
 
 
-  const bomb = [];
+  let bomb = [];
   while (bomb.length != 5) {
     const a = Math.round(Math.random() * 100) % 25;
     if (bomb.includes(a))
@@ -23,17 +23,16 @@ const Square = () => {
     boxes.push(<div className='box' id={`${i}`} onClick={() => display(i)} >🌻</div>);
   }
 
-  function playsound(file)
-  {
-    const audio=new Audio(file);
+  function playsound(file) {
+    const audio = new Audio(file);
     audio.play();
   }
   function display(e) {
     const val = document.getElementById(e);
-    
+
     if (val.innerHTML != '🌻')
       return;
-    
+
     if (bomb.includes(e)) {
       playsound(noise);
       for (let i = 0; i < 25; i++) {
@@ -46,23 +45,30 @@ const Square = () => {
         }
       }
     }
-    else
-    {
+    else {
       playsound(success);
-    val.innerHTML = '⭐';
+      val.innerHTML = '⭐';
     }
 
-  
-}
 
-function reset()
-{
-   
-    for(let i=0;i<25;i++)
-    {
-      const bb=document.getElementById(i);
-      bb.innerHTML='🌻';
+  }
+
+  function reset() {
+
+    for (let i = 0; i < 25; i++) {
+      const bb = document.getElementById(i);
+      bb.innerHTML = '🌻';
     }
+    bomb = [];
+    while (bomb.length != 5) {
+      const a = Math.round(Math.random() * 100) % 25;
+      if (bomb.includes(a))
+        continue;
+      else
+        bomb.push(a);
+
+    }
+
   }
   return (
 
