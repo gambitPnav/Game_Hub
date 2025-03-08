@@ -8,6 +8,7 @@ btn.addEventListener('click', () => {
         box.innerHTML = '';
     })
     live = true;
+    cnt=0;
 })
 
 let x_val = 0;
@@ -75,6 +76,7 @@ boxes.forEach(box => {
             score.innerHTML = `X=${x_val} <br> O=${o_val}`;
             live = false;
             setTimeout(() => alert(`Draw`), 1000);
+            cnt=0;
 
         }
     })
